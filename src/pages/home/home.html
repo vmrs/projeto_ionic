@@ -4,14 +4,20 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Ionic Blank
+      Anotações
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <button ion-item *ngFor="let item of itens" (click)="itemTapped($event, item)">
+      <div class="item-note" item-right>
+        {{item.note}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    Você navegou para <b>{{selectedItem.title}}</b>
+  </div>
 </ion-content>

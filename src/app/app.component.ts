@@ -25,6 +25,22 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      //banco de dados
+      /*
+      let db = new SQLite();
+      db.openDatabase({
+        name: "data.db",
+        location: "default"
+      }).then(()=> {
+        db.executeSql("CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, corpo TEXT)", {}).then((data) => {
+          console.log("TABELA CRIADA: ", data);
+        }, (error) =>{
+          console.error("EXECUÇÃO SQL INDISPONIVEL: ", error);
+        })
+      }, (error) => {
+        console.error("EXECUÇÃO SQL INDISPONIVEL: ", error);
+      }) ;*/
     });
   }
   openPage(page): void {
