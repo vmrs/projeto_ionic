@@ -1,3 +1,4 @@
+import { Cadastro } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -37,6 +38,9 @@ export class Detalhar {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Detalhar');
+  }
+  editarAnotacao(){
+    this.navCtrl.push(Cadastro, {item:this.item});
   }
 
 }

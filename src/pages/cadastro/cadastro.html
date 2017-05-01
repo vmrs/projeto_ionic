@@ -5,7 +5,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Cadastro</ion-title>
+    <ion-title>{{nomeCabecalho}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -28,5 +28,5 @@
 
 </ion-content>
 <ion-footer>
-  <button ion-button block (click)="salvarAnotacao()">Salvar Anotação</button>
+  <button ion-button block (click)="salvarAnotacao()">{{nomeBotao}} Anotação</button>
 </ion-footer>

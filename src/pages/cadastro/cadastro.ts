@@ -16,6 +16,11 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   templateUrl: 'cadastro.html',
 })
 export class Cadastro {
+  nomeCabecalho:string;
+  nomeBotao:string;
+
+  item: any;
+
   txtTituloAnotacao: string;
   txtCorpoAnotacao: string;
   dataAtual: string;
@@ -23,6 +28,19 @@ export class Cadastro {
   anotacoes: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertaCtrl: AlertController, af: AngularFire) {
+    if (this.navParams.get("item")){
+      this.item = this.navParams.get("item");
+
+      this.txtCorpoAnotacao = this.item.corpo;
+      this.txtTituloAnotacao = this.item.titulo;
+
+      this.nomeCabecalho = "Editar";
+      this.nomeBotao = "Editar";
+    }else{
+      this.nomeCabecalho = "Cadastrar";
+      this.nomeBotao = "Salvar";
+    }
+
     this.anotacoes = af.database.list('anotacao');
     this.dataAtual = new Date().toDateString();
   }
@@ -34,19 +52,18 @@ export class Cadastro {
   refreshData(): void {
 
   }
-
   salvarAnotacao(){
     console.log(this.txtTituloAnotacao + " - " + this.txtCorpoAnotacao);
 
     let alert = this.alertaCtrl.create({
-      title: 'Confirmar',
-      message: this.txtCorpoAnotacao,
+      title: 'Confirmação',
+      message: "Deseja "+this.nomeBotao+" os dados?",
       buttons:[{
         text: 'Cancelar',
         role: 'cancel',
         handler:() => {}
       },{
-        text: 'Salvar',
+        text: this.nomeBotao,
         handler:() => {
           //função de salvar é chama aqui
           this.salvar();
@@ -64,11 +81,24 @@ export class Cadastro {
             console.error ("ERRO: "+ JSON.stringify(error.err));
           });*/
           //this.refreshData();
-          this.anotacoes.push({
-            titulo: this.txtTituloAnotacao,
-            corpo: this.txtCorpoAnotacao,
-            data: this.dataAtual
-          });
+          if(this.item){
+            this.anotacoes.update(this.item.$key, {
+              titulo: this.txtTituloAnotacao,
+              corpo: this.txtCorpoAnotacao,
+              data: this.item.data
+            }).then( newContact => {
+              this.navCtrl.pop().then(() => this.navCtrl.pop());
+            }, error => {
+              console.log(error);
+            });
+          }else{
+            this.anotacoes.push({
+              titulo: this.txtTituloAnotacao,
+              corpo: this.txtCorpoAnotacao,
+              data: this.dataAtual
+            });
+          }
+          
           this.txtCorpoAnotacao = "";
           this.txtTituloAnotacao = "";
   }

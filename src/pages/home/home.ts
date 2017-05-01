@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController} from 'ionic-angular';
 
-//import { Detalhar } from '../detalhar/detalhar';
+import { Detalhar } from '../detalhar/detalhar';
 
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
@@ -32,6 +32,12 @@ export class HomePage {
     }*/
   }
   itemTapped(event, item){
+    
+    this.navCtrl.push(Detalhar, {
+      item: item
+    });
+  }
+  itemPressed(event, item){
     this.apresentarActionSheet(item);
     /*
     this.navCtrl.push(Detalhar, {

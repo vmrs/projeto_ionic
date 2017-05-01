@@ -34,6 +34,9 @@ export class MyApp {
   openPage(page): void {
     this.rootPage = page.component;
   }
+  logout(){
+    this.auth.signOut();
+  }
   inicializarApp(){
     this.platform.ready().then(() => {
 
