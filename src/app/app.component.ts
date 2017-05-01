@@ -1,30 +1,50 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { Cadastro } from '../pages/cadastro/cadastro';
+import { Login } from '../pages/login/login';
+
+import { AuthService } from '../providers/auth-service';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
   rootPage:any = HomePage;
 
   pages: Array<{component: any, title: string}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public auth: AuthService) {
+    this.auth.subscribe((result) => {
+      this.inicializarApp();
+    });
+
     this.pages = [
       { component: HomePage, title: 'Principal' },
       { component: Cadastro, title: 'Cadastro' }
     ];
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+    
+  }
+  openPage(page): void {
+    this.rootPage = page.component;
+  }
+  inicializarApp(){
+    this.platform.ready().then(() => {
+
+      if(this.auth.authenticated){
+        this.nav.setRoot(HomePage);
+      }else{
+        this.nav.setRoot(Login);
+      }
+
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
 
       //banco de dados
       /*
@@ -42,9 +62,6 @@ export class MyApp {
         console.error("EXECUÇÃO SQL INDISPONIVEL: ", error);
       }) ;*/
     });
-  }
-  openPage(page): void {
-    this.rootPage = page.component;
   }
 }
 

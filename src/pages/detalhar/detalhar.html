@@ -7,13 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detalhe</ion-title>
+    <ion-title>{{item.titulo}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  {{item.title}}
+  <b>{{ dataFormatada }}</b>
+  <div>{{item.corpo}}</div>
+  
 
 </ion-content>

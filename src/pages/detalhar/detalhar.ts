@@ -14,8 +14,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Detalhar {
   item: any;
+  dataFormatada: string;
+  meses = {"Feb":"Fev", "Apr":"Abr", "May": "Mai", "Aug": "Ago", "Sep": "Set", "Oct": "Out", "Dec":"Dez"};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.item = this.navParams.get("item");
+    
+    //formatando data
+    let dia = this.item.data.substring(8,10);
+    var mes = this.item.data.substring(4,7);
+    if(this.meses[mes]){
+      mes = this.meses[mes];
+    }
+    /*
+    for(let m of this.mesesIng){
+      if (m == mes){
+        mes = this.mesesPort[this.mesesIng.indexOf(m)];
+      }
+    }*/
+    let ano = this.item.data.substring(11);
+    this.dataFormatada = dia + "/" + mes + "/" + ano;
   }
 
   ionViewDidLoad() {

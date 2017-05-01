@@ -4,20 +4,28 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Anotações
+      Anotações ({{tamanho}})
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
+    <button ion-item *ngFor="let item of itens | async" (click)="itemTapped($event, item)">
+    <!--
     <button ion-item *ngFor="let item of itens" (click)="itemTapped($event, item)">
-      <div class="item-note" item-right>
-        {{item.note}}
+      -->
+      <div class="item-note item-text-wrap" item-right>
+        {{item.titulo}}
       </div>
     </button>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="queryTasks($event)" icon="ion-loading-c">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais anotações..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!--
   <div *ngIf="selectedItem" padding>
     Você navegou para <b>{{selectedItem.title}}</b>
   </div>
+  -->
 </ion-content>
