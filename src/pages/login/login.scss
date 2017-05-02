@@ -1,3 +1,41 @@
 page-login {
-
+    .pages{
+        background: #784421;
+    }
+    .campos{
+        background: #784421;
+        color: #ffffff;
+    }
+    .botoes{
+        background: #decd87;
+        color: #000000;
+    }
+    .div{
+        position: relative;
+        width: 100%;
+        height: 15vh;
+        left: 0;
+        right: 0;
+        margin:0 auto;
+    }
+    .imagem{
+        background: #784421;
+        position: absolute;
+        margin:0 auto;
+        left: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+    }
+    .creditoBloco{
+        position: relative;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .credito{
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
 }

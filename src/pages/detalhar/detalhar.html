@@ -7,18 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{item.titulo}}</ion-title>
+    <ion-title>Detalhes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <b>{{ dataFormatada }}</b>
-  <div>{{item.corpo}}</div>
+<ion-content padding class="pages">
+  <h1>{{item.titulo}}</h1>
+  <div class="dataTexto"><ion-label><b>{{ dataFormatada }}</b></ion-label></div>
+  <div><h3>{{item.corpo}}</h3></div>
   
 
 </ion-content>
 <ion-footer>
-  <button ion-button block (click)="editarAnotacao()">Editar</button>
+  <button ion-button block (click)="editarAnotacao()" class="botoes">Editar</button>
 </ion-footer>

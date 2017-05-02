@@ -39,5 +39,10 @@ export class AuthService {
 
   signOut(): void{
     this.auth$.logout();
+
+  }
+
+  get uid(){
+    return this.authState.uid
   }
 }

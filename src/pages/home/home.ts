@@ -1,3 +1,4 @@
+import { Cadastro } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController} from 'ionic-angular';
 
@@ -10,6 +11,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  
   selectedItem: any;
   //itens: Array<{title:string, note: string}>;
   itens: FirebaseListObservable<any>;
@@ -89,5 +91,8 @@ export class HomePage {
     this.itens.subscribe(
       val => this.tamanho = val.length
     );
+  }
+  novaAnotacao(){
+    this.navCtrl.setRoot(Cadastro);
   }
 }

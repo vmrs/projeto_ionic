@@ -15,17 +15,18 @@ import { AuthService } from '../providers/auth-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = Login;
 
   pages: Array<{component: any, title: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public auth: AuthService) {
     this.auth.subscribe((result) => {
       this.inicializarApp();
+      
     });
 
     this.pages = [
-      { component: HomePage, title: 'Principal' },
+      { component: HomePage, title: 'Minhas Anotações' },
       { component: Cadastro, title: 'Cadastro' }
     ];
 
@@ -35,7 +36,7 @@ export class MyApp {
     this.rootPage = page.component;
   }
   logout(){
-    this.auth.signOut();
+    this.auth.signOut(); 
   }
   inicializarApp(){
     this.platform.ready().then(() => {
@@ -49,21 +50,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      //banco de dados
-      /*
-      let db = new SQLite();
-      db.openDatabase({
-        name: "data.db",
-        location: "default"
-      }).then(()=> {
-        db.executeSql("CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, corpo TEXT)", {}).then((data) => {
-          console.log("TABELA CRIADA: ", data);
-        }, (error) =>{
-          console.error("EXECUÇÃO SQL INDISPONIVEL: ", error);
-        })
-      }, (error) => {
-        console.error("EXECUÇÃO SQL INDISPONIVEL: ", error);
-      }) ;*/
     });
   }
 }

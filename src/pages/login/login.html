@@ -7,23 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>AnotApp</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-item>
+<ion-content padding class="pages">
+  <div class="div">
+    <ion-img class="imagem" src="../../assets/anotacao.png"></ion-img>
+  </div>
+  <ion-item class="campos">
     <ion-label floating>Email</ion-label>
     <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item class="campos">
     <ion-label floating>Password</ion-label>
     <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
-  <div padding>
-    <button ion-button block (click)="login()">Login</button>
-    <button ion-button block (click)="registrarUsuario()">Criar Nova Conta</button>
-  </div>
 </ion-content>
+<ion-footer>
+  <div padding>
+    <button ion-button block (click)="login()" class="botoes">Login</button>
+    <button ion-button block (click)="registrarUsuario()" class="botoes">Criar Nova Conta</button>
+  </div>
+</ion-footer>

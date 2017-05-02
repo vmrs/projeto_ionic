@@ -9,14 +9,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="pages">
   <ion-list>
     <ion-item-sliding *ngFor="let item of itens | async">
-      <button ion-item (click)="itemTapped($event, item)"
+      <button class="lista" ion-item (click)="itemTapped($event, item)"
                         (press)= "itemPressed($event, item)">
         <h2>{{item.titulo}}</h2>
       </button>
-      <ion-item-options>
+      <ion-item-options class="lista">
         <button ion-button color="danger" (click) ="delete(item)">
           Delete
         </button>
@@ -43,4 +43,9 @@
     Você navegou para <b>{{selectedItem.title}}</b>
   </div>
   -->
+  <ion-fab right bottom>
+    <button ion-fab class="botao" (click)="novaAnotacao()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
